@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Verktyg – Website Inspector</title>
+    <meta
+      name="description"
+      content="Säkra och lagliga verktyg för säkerhetsanalys av egna domäner."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="logo">Website<span>Inspector</span></div>
+        <nav class="nav">
+          <a href="./index.html">Hem</a>
+          <a href="./tools.html">Verktyg</a>
+          <a href="./admin.html">Admin</a>
+          <a href="./login.html" class="nav-cta">Logga in</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="section">
+          <div class="section-content">
+            <div class="section-header">
+              <div>
+                <h1>Verktyg för laglig säkerhetsanalys</h1>
+                <p class="muted">
+                  Alla verktyg körs <strong>passivt</strong> och är avsedda för domäner
+                  du själv äger eller har tillstånd att testa.
+                </p>
+              </div>
+              <a href="./login.html" class="btn-secondary">Byt plan / Logga in</a>
+            </div>
+
+            <div id="tools-status" class="status-banner"></div>
+
+            <div class="tools-grid" id="tools-grid"></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>Website Inspector</span>
+          <span>Beta-verktyg kräver adminåtkomst.</span>
+          <span>Premium kräver aktiv prenumeration.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./tools.js" type="module"></script>
+  </body>
+</html>
