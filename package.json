@@ -1,0 +1,25 @@
+{
+  "name": "website-inspector",
+  "version": "1.0.0",
+  "description": "Legal website security auditing and OSINT tool for your own domains.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "NODE_ENV=development node src/server.js"
+  },
+  "keywords": [
+    "security",
+    "osint",
+    "audit",
+    "website",
+    "legal"
+  ],
+  "author": "AxelTB1",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.3.2"
+  }
+}
