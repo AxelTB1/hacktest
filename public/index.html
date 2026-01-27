@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Website Inspector – Legal Web Security & OSINT</title>
+    <meta
+      name="description"
+      content="En laglig webbsäkerhets- och OSINT-tjänst för auditing av dina egna domäner. Inget bruteforce, inga attacker – bara seriös säkerhetsgranskning."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="logo">Website<span>Inspector</span></div>
+        <nav class="nav">
+          <a href="#how-it-works">Hur det fungerar</a>
+          <a href="#legal">Legal / Ansvar</a>
+          <a href="#app">App</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="hero">
+          <div class="hero-text">
+            <h1>Legal Website Security & OSINT för dina egna domäner</h1>
+            <p>
+              Website Inspector är ett verktyg för seriösa utvecklare och
+              säkerhetsintresserade som vill göra
+              <strong>laglig auditing</strong> av sina egna webbplatser.
+              <br />
+              <span class="hero-note">
+                Ingen bruteforce. Inga attacker. Endast passiva kontroller och
+                bästa praxis.
+              </span>
+            </p>
+            <ul class="hero-list">
+              <li>Verifiera att du verkligen äger/kontrollerar domänen.</li>
+              <li>Scanna HTTP/S-konfiguration & säkerhetsheaders.</li>
+              <li>Få tydliga rekommendationer för att höja säkerheten.</li>
+            </ul>
+            <a href="#app" class="cta-button">Starta en säkerhetsgranskning</a>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-header">Snabb överblick</div>
+            <div class="hero-card-body">
+              <div class="hero-metric">
+                <span class="label">HTTPS</span>
+                <span class="value value-ok">Aktiverad</span>
+              </div>
+              <div class="hero-metric">
+                <span class="label">Security Headers</span>
+                <span class="value value-warn">Delvis</span>
+              </div>
+              <div class="hero-metric">
+                <span class="label">Informationsläckor</span>
+                <span class="value value-issue">Upptäckta</span>
+              </div>
+              <p class="hero-card-note">
+                Du får en tydlig rapport med vad som redan är bra och vad som
+                bör förbättras.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="how-it-works" class="section section-split">
+          <div class="section-content">
+            <h2>Hur det fungerar</h2>
+            <ol class="steps">
+              <li>
+                <strong>1. Registrera domän</strong>
+                <span>Du anger vilken domän du vill granska.</span>
+              </li>
+              <li>
+                <strong>2. Bevisa kontroll</strong>
+                <span
+                  >Lägg till en meta-tagg, en verifieringsfil eller ett TXT-record i
+                  DNS. Vi kontrollerar att du verkligen har kontroll.</span
+                >
+              </li>
+              <li>
+                <strong>3. Kör passiv säkerhetsscan</strong>
+                <span
+                  >Vi hämtar startsidan och analyserar headers och kända
+                  sårbarhetsindikatorer – utan några aktiva attacker.</span
+                >
+              </li>
+              <li>
+                <strong>4. Få rapport & rekommendationer</strong>
+                <span
+                  >Se en tydlig översikt och konkreta förbättringsförslag för att
+                  göra din sida säkrare.</span
+                >
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="legal" class="section section-highlight">
+          <div class="section-content">
+            <h2>Legal / Ansvar</h2>
+            <p class="legal-text">
+              Website Inspector är byggt för <strong>laglig säkerhetsgranskning</strong>.
+              Du får endast använda verktyget på system där du har
+              <strong>egen kontroll eller uttryckligt skriftligt tillstånd</strong>.
+            </p>
+            <ul class="legal-list">
+              <li>Ingen bruteforce eller lösenordstestning.</li>
+              <li>Inga exploits eller sårbarhetsattacker.</li>
+              <li>Endast passiva HTTP/HTTPS-förfrågningar och analys.</li>
+            </ul>
+            <p class="legal-text small">
+              Genom att använda detta verktyg accepterar du att du är ansvarig
+              för hur du använder det. Utvecklaren tar inget ansvar för
+              felaktig eller olaglig användning.
+            </p>
+          </div>
+        </section>
+
+        <section id="app" class="section app-section">
+          <div class="section-content">
+            <h2>Website Inspector – App</h2>
+            <div class="app-grid">
+              <div class="card">
+                <h3>1. Registrera domän</h3>
+                <form id="register-form" class="form">
+                  <label for="domain-input">Domän (utan https://)</label>
+                  <input
+                    id="domain-input"
+                    type="text"
+                    name="domain"
+                    placeholder="exempel.se"
+                    required
+                  />
+                  <button type="submit" class="btn-primary">
+                    Registrera domän
+                  </button>
+                </form>
+
+                <div id="register-result" class="panel hidden">
+                  <h4>Verifieringssteg</h4>
+                  <p>
+                    Lägg till <strong>minst en</strong> av följande metoder på din
+                    domän:
+                  </p>
+
+                  <div class="accordion">
+                    <details open>
+                      <summary>Meta-tagg i &lt;head&gt;</summary>
+                      <pre id="meta-snippet" class="code-block"></pre>
+                    </details>
+                    <details>
+                      <summary>Verifieringsfil (well-known)</summary>
+                      <p>
+                        Skapa en fil på din server på denna URL och lägg in
+                        token i filen:
+                      </p>
+                      <pre id="file-url" class="code-block"></pre>
+                      <pre id="file-content" class="code-block"></pre>
+                    </details>
+                    <details>
+                      <summary>DNS TXT-record</summary>
+                      <p>Lägg till ett TXT-record så här:</p>
+                      <pre id="dns-record" class="code-block"></pre>
+                    </details>
+                  </div>
+
+                  <button id="verify-button" class="btn-secondary">
+                    Kontrollera verifiering
+                  </button>
+                  <p id="verify-status" class="status-text"></p>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>2. Kör säkerhetsscan</h3>
+                <p class="muted">
+                  När din domän är verifierad kan du köra en passiv säkerhetsscan.
+                </p>
+                <button id="scan-button" class="btn-primary" disabled>
+                  Kör säkerhetsscan
+                </button>
+                <p id="scan-status" class="status-text"></p>
+
+                <div id="scan-result" class="panel hidden">
+                  <h4>Resultat</h4>
+                  <div class="scan-meta">
+                    <div><span>URL:</span> <span id="scan-url"></span></div>
+                    <div><span>Status:</span> <span id="scan-http-status"></span></div>
+                    <div><span>HTTPS:</span> <span id="scan-https"></span></div>
+                  </div>
+
+                  <div class="scan-columns">
+                    <div>
+                      <h5>Security Headers</h5>
+                      <ul id="scan-headers" class="pill-list"></ul>
+                    </div>
+                    <div>
+                      <h5>Teknikindikationer</h5>
+                      <ul id="scan-tech" class="pill-list"></ul>
+                    </div>
+                  </div>
+
+                  <div class="scan-columns">
+                    <div>
+                      <h5>Upptäckta problem</h5>
+                      <ul id="scan-issues" class="bullet-list"></ul>
+                    </div>
+                    <div>
+                      <h5>Rekommendationer</h5>
+                      <ul id="scan-recommendations" class="bullet-list"></ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>Website Inspector</span>
+          <span>Endast för laglig användning och egna domäner.</span>
+          <span>MIT License – se LICENSE i repot.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
+
