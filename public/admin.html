@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Admin – Website Inspector</title>
+    <meta
+      name="description"
+      content="Adminmeny för att styra beta-verktyg och premiumåtkomst."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="logo">Website<span>Inspector</span></div>
+        <nav class="nav">
+          <a href="./index.html">Hem</a>
+          <a href="./tools.html">Verktyg</a>
+          <a href="./login.html" class="nav-cta">Logga in</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="section">
+          <div class="section-content">
+            <div class="section-header">
+              <div>
+                <h1>Adminmeny</h1>
+                <p class="muted">
+                  Här styr du beta-funktioner och prenumerationer för
+                  demo-användare. I en riktig produkt kopplas detta till backend.
+                </p>
+              </div>
+              <a href="./login.html" class="btn-secondary">Uppdatera inloggning</a>
+            </div>
+
+            <div id="admin-status" class="status-banner"></div>
+
+            <div class="admin-grid">
+              <div class="card">
+                <h3>Beta-verktyg</h3>
+                <p class="muted">
+                  Aktivera eller stäng av beta-läget. Det styr vilka verktyg som
+                  visas som "Beta" på verktygssidan.
+                </p>
+                <button id="toggle-beta" class="btn-secondary">Växla beta-läge</button>
+              </div>
+
+              <div class="card">
+                <h3>Prenumerationsnivå</h3>
+                <p class="muted">
+                  Sätt plan för den inloggade användaren för att låsa upp
+                  premiumverktyg (19,99 USD / månad).
+                </p>
+                <div class="button-row">
+                  <button data-plan="free" class="btn-secondary">Sätt Free</button>
+                  <button data-plan="pro" class="btn-primary">Sätt Pro</button>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3>Snabbåtgärder</h3>
+                <p class="muted">
+                  Rensa demo-session eller skapa en admin-session direkt.
+                </p>
+                <div class="button-row">
+                  <button id="create-admin" class="btn-secondary">Skapa admin-demo</button>
+                  <button id="logout" class="btn-secondary">Logga ut</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>Website Inspector</span>
+          <span>Admin är endast demo lokalt i webbläsaren.</span>
+          <span>Se README för riktiga adminflöden.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./admin.js" type="module"></script>
+  </body>
+</html>

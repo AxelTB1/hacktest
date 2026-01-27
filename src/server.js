@@ -16,8 +16,10 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.disable("x-powered-by");
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "200kb" }));
 app.use(morgan("dev"));
 
 // Serve frontend
@@ -341,4 +343,3 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Website Inspector server kör på http://localhost:${PORT}`);
 });
-

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Logga in – Website Inspector</title>
+    <meta
+      name="description"
+      content="Logga in för att få tillgång till verktyg, adminmeny och beta-funktioner i Website Inspector."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div class="logo">Website<span>Inspector</span></div>
+        <nav class="nav">
+          <a href="./index.html">Hem</a>
+          <a href="./tools.html">Verktyg</a>
+          <a href="./admin.html">Admin</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="section section-auth">
+          <div class="section-content">
+            <div class="auth-grid">
+              <div>
+                <h1>Logga in</h1>
+                <p class="muted">
+                  Det här är en <strong>demo-inloggning</strong> för att visa hur
+                  verktyg och roller kan styras. Ingen data skickas till en server.
+                </p>
+                <ul class="checklist">
+                  <li>Välj plan: Free eller Pro.</li>
+                  <li>Aktivera adminläge om du vill hantera beta-verktyg.</li>
+                  <li>Efter inloggning skickas du vidare till verktygssidan.</li>
+                </ul>
+              </div>
+              <div class="card">
+                <form id="login-form" class="form">
+                  <label for="email">E-post</label>
+                  <input id="email" type="email" name="email" required />
+
+                  <label for="password">Lösenord</label>
+                  <input id="password" type="password" name="password" required />
+
+                  <label for="plan">Plan</label>
+                  <select id="plan" name="plan">
+                    <option value="free">Free (0 kr)</option>
+                    <option value="pro">Pro (19,99 USD)</option>
+                  </select>
+
+                  <label for="admin-code">Admin-kod (valfritt)</label>
+                  <input
+                    id="admin-code"
+                    type="text"
+                    name="admin-code"
+                    placeholder="T.ex. ADMIN-DEMO"
+                  />
+
+                  <button class="btn-primary" type="submit">Logga in</button>
+                  <p id="login-status" class="status-text"></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <span>Website Inspector</span>
+          <span>Demo-inloggning – ingen riktiga konton skapas.</span>
+          <span>Behöver du riktig auth? Se README för manuala steg.</span>
+        </div>
+      </footer>
+    </div>
+
+    <script src="./login.js" type="module"></script>
+  </body>
+</html>
