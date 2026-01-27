@@ -1,60 +1,90 @@
-# Website Inspector
+# Website Inspector (GitHub Pages preview)
 
-Website Inspector är en **laglig** säkerhets- och OSINT-demo för egna domäner.
-Den här versionen innehåller en frontend med demo-inloggning, verktygssida och
-adminmeny (alla lokalt i webbläsaren), samt en Node/Express-backend för
-passiva analyser.
+Det här repot innehåller en statisk frontend och en enkel Node/Express-backend.
+GitHub Pages kan **endast** köra den statiska frontenden – backend körs inte där.
 
-## Kom igång lokalt
+## 🔗 Live preview
+
+När du har aktiverat GitHub Pages får du din preview här:
+
+```
+https://axeltb1.github.io/
+```
+
+> Om du använder ett annat repo än ditt användarnamn (`axeltb1.github.io`) kommer
+> länken istället vara `https://axeltb1.github.io/<reponamn>/`.
+
+---
+
+## ✅ Snabbstart lokalt (frontend)
+
+Du kan öppna frontenden direkt i webbläsaren:
+
+1. Öppna `public/index.html` i webbläsaren.
+2. Navigera mellan sidorna via länkarna i UI:t.
+
+> Detta läser allt lokalt i webbläsaren och kräver ingen server.
+
+---
+
+## ✅ Snabbstart lokalt (backend + frontend)
+
+Vill du köra API:t lokalt (för demo-funktioner):
 
 ```bash
 npm install
 npm run start
 ```
 
-Öppna sedan `http://localhost:3000` i din webbläsare.
+Öppna sedan:
 
-## Viktigt om demo-inloggning
+```
+http://localhost:3000
+```
 
-`login.html` använder **endast** `localStorage` i webbläsaren för att simulera
-roller och planer. Detta är **inte** säker autentisering. För en riktig produkt
-behöver du koppla in:
+---
 
-- Backend med sessionshantering (JWT, cookies, etc.)
-- Databas för användare och abonnemang
-- Betalningsprovider (Stripe, Paddle, etc.)
+## 🚀 Deploy till GitHub Pages (steg-för-steg)
 
-## Deploya till GitHub Pages (frontend)
+1. **Skapa repo på GitHub**
+   - Skapa ett repo och pusha upp den här koden.
 
-GitHub Pages kan endast serva **statisk** frontend. Så här gör du:
+2. **Gå till Pages-inställningar**
+   - `Settings → Pages → Build and deployment`
 
-1. Skapa ett nytt repo på GitHub och pusha koden.
-2. Flytta/bygg frontend till en statisk katalog (här: `public/`).
-3. I GitHub: **Settings → Pages → Build and deployment**.
-4. Välj **Deploy from a branch** och sätt `main` + `/public`.
-5. Spara och vänta på att GitHub bygger sidan.
+3. **Välj branch och katalog**
+   - Source: **Deploy from a branch**
+   - Branch: **main**
+   - Folder: **/public**
 
-> Notera: API:et i `src/server.js` körs inte på GitHub Pages.
+4. **Spara**
+   - Vänta 1–2 minuter tills GitHub har byggt sidan.
 
-## Deploya backend (Node/Express)
+5. **Öppna preview-länken**
+   - `https://axeltb1.github.io/` (om du använder repo med samma namn)
 
-För backend behöver du en separat host. Exempel (Render):
+---
 
-1. Skapa ett nytt **Web Service** på Render.
-2. Koppla GitHub-repot.
-3. Build command: `npm install`
-4. Start command: `npm run start`
-5. När tjänsten är live, uppdatera frontendens `apiBase` i `public/app.js` om du
-   vill att frontend ska prata med den externa backend-URL:en.
+## ⚠️ Viktigt: backend körs inte på GitHub Pages
 
-## Nästa steg (för riktiga konton)
+GitHub Pages stödjer bara statisk frontend. Om du vill ha API:t live:
 
-- Skapa endpoints för inloggning/roller.
-- Lagra verktygsåtkomst i databasen.
-- Bygg ett admin-API (istället för `localStorage`).
-- Lägg till rate limiting, logging och observability.
+- Host backend separat (t.ex. Render, Railway, Fly.io)
+- Uppdatera `apiBase` i `public/app.js` till din backend-URL
 
-## Säkerhetsnotis
+---
+
+## 📁 Viktiga filer
+
+- `public/index.html` – startsida
+- `public/tools.html` – verktyg
+- `public/admin.html` – admin
+- `public/app.js` – logik för frontend
+- `src/server.js` – backend/API (körs lokalt eller på separat host)
+
+---
+
+## ✅ Säkerhetsnotis
 
 Alla verktyg är **passiva** och är endast avsedda för domäner du äger eller har
 skriftligt tillstånd att testa.
