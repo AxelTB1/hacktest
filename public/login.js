@@ -1,7 +1,12 @@
 const loginForm = document.getElementById("login-form");
 const statusEl = document.getElementById("login-status");
+const fillDemoBtn = document.getElementById("fill-demo");
 
 const ADMIN_CODE = "ADMIN-DEMO";
+const DEMO_ACCOUNT = {
+  username: "tester1",
+  password: "123",
+};
 
 function setStatus(type, message) {
   statusEl.classList.remove("ok", "warn", "error");
@@ -28,12 +33,21 @@ loginForm.addEventListener("submit", (event) => {
   const plan = loginForm.plan.value;
   const adminCode = loginForm["admin-code"].value.trim();
 
-  if (!email || !email.includes("@")) {
-    setStatus("error", "Please enter a valid email address.");
+  const isDemoUser = email === DEMO_ACCOUNT.username;
+  if (!email || (!isDemoUser && !email.includes("@"))) {
+    setStatus(
+      "error",
+      "Please enter a valid email address or use the demo username."
+    );
     return;
   }
 
-  if (password.length < 4) {
+  if (isDemoUser && password !== DEMO_ACCOUNT.password) {
+    setStatus("error", "Incorrect demo password.");
+    return;
+  }
+
+  if (!isDemoUser && password.length < 4) {
     setStatus("error", "Please enter a password with at least 4 characters.");
     return;
   }
@@ -41,7 +55,8 @@ loginForm.addEventListener("submit", (event) => {
   const isAdmin = adminCode.toUpperCase() === ADMIN_CODE;
   const betaAccess = isAdmin;
 
-  saveUserSession({ email, plan, isAdmin, betaAccess });
+  const storedEmail = isDemoUser ? "tester1" : email;
+  saveUserSession({ email: storedEmail, plan, isAdmin, betaAccess });
 
   if (isAdmin) {
     setStatus("ok", "Admin mode enabled. Redirecting to tools...");
@@ -53,3 +68,13 @@ loginForm.addEventListener("submit", (event) => {
     window.location.href = "./tools.html";
   }, 900);
 });
+
+if (fillDemoBtn) {
+  fillDemoBtn.addEventListener("click", () => {
+    loginForm.email.value = DEMO_ACCOUNT.username;
+    loginForm.password.value = DEMO_ACCOUNT.password;
+    loginForm.plan.value = "pro";
+    loginForm["admin-code"].value = "";
+    setStatus(null, "");
+  });
+}

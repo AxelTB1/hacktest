@@ -80,11 +80,14 @@ When the backend is unavailable, the app runs in **Demo Mode** automatically:
 Everything is client-only for the preview:
 
 - Login uses **localStorage** (no real accounts).
+- Demo account: **tester1** / **123**.
 - Use this admin code to unlock admin tools:
 
 ```
 ADMIN-DEMO
 ```
+
+- Hidden admin password (admin page corner): **test**.
 
 ---
 

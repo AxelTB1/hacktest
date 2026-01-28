@@ -27,6 +27,23 @@
       <main class="main">
         <section class="section">
           <div class="section-content">
+            <div class="admin-secret">
+              <button id="toggle-admin-secret" class="secret-toggle" type="button">
+                Admin Access
+              </button>
+              <div id="admin-secret-panel" class="secret-panel hidden">
+                <input
+                  id="admin-secret-input"
+                  type="password"
+                  placeholder="Password"
+                  aria-label="Admin password"
+                />
+                <button id="admin-secret-submit" class="btn-secondary" type="button">
+                  Unlock
+                </button>
+                <p id="admin-secret-status" class="status-text"></p>
+              </div>
+            </div>
             <div class="section-header">
               <div>
                 <h1>Admin panel</h1>
