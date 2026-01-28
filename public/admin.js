@@ -3,6 +3,13 @@ const toggleBetaBtn = document.getElementById("toggle-beta");
 const planButtons = document.querySelectorAll("button[data-plan]");
 const createAdminBtn = document.getElementById("create-admin");
 const logoutBtn = document.getElementById("logout");
+const secretToggleBtn = document.getElementById("toggle-admin-secret");
+const secretPanel = document.getElementById("admin-secret-panel");
+const secretInput = document.getElementById("admin-secret-input");
+const secretSubmit = document.getElementById("admin-secret-submit");
+const secretStatus = document.getElementById("admin-secret-status");
+
+const ADMIN_SECRET = "test";
 
 function getUserSession() {
   const raw = localStorage.getItem("wi_user");
@@ -25,11 +32,37 @@ function setStatus(message, type = "info") {
   if (type === "warn") statusEl.classList.add("status-warn");
 }
 
+function setSecretStatus(type, message) {
+  secretStatus.classList.remove("ok", "warn", "error");
+  if (type) secretStatus.classList.add(type);
+  secretStatus.textContent = message;
+}
+
+function ensureAdminSession() {
+  const existing = getUserSession();
+  const user = existing || {
+    email: "admin@demo.local",
+    plan: "pro",
+    isAdmin: true,
+    betaAccess: true,
+    loggedInAt: new Date().toISOString(),
+  };
+
+  user.isAdmin = true;
+  user.betaAccess = true;
+  if (!user.plan) {
+    user.plan = "pro";
+  }
+
+  saveUserSession(user);
+  updateAdminState();
+}
+
 function updateAdminState() {
   const user = getUserSession();
   if (!user || !user.isAdmin) {
     setStatus(
-      "Ingen admin-session hittades. Logga in med admin-kod eller skapa en admin-demo.",
+      "No admin session found. Log in with the admin code or create an admin demo.",
       "warn"
     );
     toggleBetaBtn.disabled = true;
@@ -41,9 +74,9 @@ function updateAdminState() {
   planButtons.forEach((btn) => (btn.disabled = false));
 
   const planLabel = user.plan === "pro" ? "Pro" : "Free";
-  const betaLabel = user.betaAccess ? "På" : "Av";
+  const betaLabel = user.betaAccess ? "On" : "Off";
   setStatus(
-    `Admin aktiv: ${user.email} • Plan: ${planLabel} • Beta: ${betaLabel}`,
+    `Admin active: ${user.email} • Plan: ${planLabel} • Beta: ${betaLabel}`,
     "ok"
   );
 }
@@ -82,5 +115,29 @@ toggleBetaBtn.addEventListener("click", () => {
   saveUserSession(user);
   updateAdminState();
 });
+
+if (secretToggleBtn) {
+  secretToggleBtn.addEventListener("click", () => {
+    secretPanel.classList.toggle("hidden");
+    setSecretStatus(null, "");
+  });
+}
+
+if (secretSubmit) {
+  secretSubmit.addEventListener("click", () => {
+    const value = secretInput.value.trim();
+    if (!value) {
+      setSecretStatus("warn", "Enter the admin password.");
+      return;
+    }
+    if (value === ADMIN_SECRET) {
+      ensureAdminSession();
+      setSecretStatus("ok", "Admin access unlocked.");
+      secretInput.value = "";
+    } else {
+      setSecretStatus("error", "Incorrect password.");
+    }
+  });
+}
 
 updateAdminState();

@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>Verktyg – Website Inspector</title>
+    <title>Tools – Website Inspector</title>
     <meta
       name="description"
-      content="Säkra och lagliga verktyg för säkerhetsanalys av egna domäner."
+      content="Safe and legal tools for passive security analysis of your own domains."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -18,10 +18,10 @@
       <header class="header">
         <div class="logo">Website<span>Inspector</span></div>
         <nav class="nav">
-          <a href="./index.html">Hem</a>
-          <a href="./tools.html">Verktyg</a>
+          <a href="./index.html">Home</a>
+          <a href="./tools.html">Tools</a>
           <a href="./admin.html">Admin</a>
-          <a href="./login.html" class="nav-cta">Logga in</a>
+          <a href="./login.html" class="nav-cta">Log in</a>
         </nav>
       </header>
 
@@ -30,18 +30,28 @@
           <div class="section-content">
             <div class="section-header">
               <div>
-                <h1>Verktyg för laglig säkerhetsanalys</h1>
+                <h1>Tools for legal security analysis</h1>
                 <p class="muted">
-                  Alla verktyg körs <strong>passivt</strong> och är avsedda för domäner
-                  du själv äger eller har tillstånd att testa.
+                  All tools are <strong>passive</strong> and intended for domains you
+                  own or have permission to test.
                 </p>
               </div>
-              <a href="./login.html" class="btn-secondary">Byt plan / Logga in</a>
+              <a href="./login.html" class="btn-secondary">Change plan / Log in</a>
             </div>
 
             <div id="tools-status" class="status-banner"></div>
 
             <div class="tools-grid" id="tools-grid"></div>
+
+            <div class="tool-detail" id="tool-detail">
+              <div class="tool-detail-header">
+                <h2 id="tool-detail-title">Select a tool</h2>
+                <p id="tool-detail-summary" class="muted">
+                  Choose a tool above to see steps, demo output, and what to do next.
+                </p>
+              </div>
+              <div id="tool-detail-body"></div>
+            </div>
           </div>
         </section>
       </main>
@@ -49,8 +59,8 @@
       <footer class="footer">
         <div class="footer-inner">
           <span>Website Inspector</span>
-          <span>Beta-verktyg kräver adminåtkomst.</span>
-          <span>Premium kräver aktiv prenumeration.</span>
+          <span>Beta tools require admin access.</span>
+          <span>Premium requires an active subscription.</span>
         </div>
       </footer>
     </div>

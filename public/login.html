@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <title>Logga in – Website Inspector</title>
+    <title>Log in – Website Inspector</title>
     <meta
       name="description"
-      content="Logga in för att få tillgång till verktyg, adminmeny och beta-funktioner i Website Inspector."
+      content="Log in to access tools, admin controls, and beta features in Website Inspector."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -18,8 +18,8 @@
       <header class="header">
         <div class="logo">Website<span>Inspector</span></div>
         <nav class="nav">
-          <a href="./index.html">Hem</a>
-          <a href="./tools.html">Verktyg</a>
+          <a href="./index.html">Home</a>
+          <a href="./tools.html">Tools</a>
           <a href="./admin.html">Admin</a>
         </nav>
       </header>
@@ -29,40 +29,51 @@
           <div class="section-content">
             <div class="auth-grid">
               <div>
-                <h1>Logga in</h1>
+                <h1>Log in</h1>
                 <p class="muted">
-                  Det här är en <strong>demo-inloggning</strong> för att visa hur
-                  verktyg och roller kan styras. Ingen data skickas till en server.
+                  This is a <strong>demo login</strong> for showing how roles and plans
+                  are managed. No data is sent to a server.
                 </p>
                 <ul class="checklist">
-                  <li>Välj plan: Free eller Pro.</li>
-                  <li>Aktivera adminläge om du vill hantera beta-verktyg.</li>
-                  <li>Efter inloggning skickas du vidare till verktygssidan.</li>
+                  <li>Choose a plan: Free or Pro.</li>
+                  <li>Enable admin mode to manage beta tools.</li>
+                  <li>After login you will be redirected to the tools page.</li>
                 </ul>
+                <div class="demo-credentials">
+                  <h3>Demo account</h3>
+                  <p class="muted">Username: <strong>tester1</strong></p>
+                  <p class="muted">Password: <strong>123</strong></p>
+                  <button id="fill-demo" class="btn-secondary" type="button">
+                    Use demo account
+                  </button>
+                </div>
+                <p class="muted">
+                  Admin demo code: <strong>ADMIN-DEMO</strong>
+                </p>
               </div>
               <div class="card">
                 <form id="login-form" class="form">
-                  <label for="email">E-post</label>
+                  <label for="email">Email</label>
                   <input id="email" type="email" name="email" required />
 
-                  <label for="password">Lösenord</label>
+                  <label for="password">Password</label>
                   <input id="password" type="password" name="password" required />
 
                   <label for="plan">Plan</label>
                   <select id="plan" name="plan">
-                    <option value="free">Free (0 kr)</option>
-                    <option value="pro">Pro (19,99 USD)</option>
+                    <option value="free">Free ($0)</option>
+                    <option value="pro">Pro ($19.99)</option>
                   </select>
 
-                  <label for="admin-code">Admin-kod (valfritt)</label>
+                  <label for="admin-code">Admin code (optional)</label>
                   <input
                     id="admin-code"
                     type="text"
                     name="admin-code"
-                    placeholder="T.ex. ADMIN-DEMO"
+                    placeholder="e.g. ADMIN-DEMO"
                   />
 
-                  <button class="btn-primary" type="submit">Logga in</button>
+                  <button class="btn-primary" type="submit">Log in</button>
                   <p id="login-status" class="status-text"></p>
                 </form>
               </div>
@@ -74,8 +85,8 @@
       <footer class="footer">
         <div class="footer-inner">
           <span>Website Inspector</span>
-          <span>Demo-inloggning – ingen riktiga konton skapas.</span>
-          <span>Behöver du riktig auth? Se README för manuala steg.</span>
+          <span>Demo login – no real accounts are created.</span>
+          <span>Need real auth? See the README for manual steps.</span>
         </div>
       </footer>
     </div>

@@ -1,60 +1,116 @@
-# Website Inspector
+# Website Inspector (GitHub Pages Preview)
 
-Website Inspector är en **laglig** säkerhets- och OSINT-demo för egna domäner.
-Den här versionen innehåller en frontend med demo-inloggning, verktygssida och
-adminmeny (alla lokalt i webbläsaren), samt en Node/Express-backend för
-passiva analyser.
+This repo ships a **static frontend** and a small **Node/Express backend**.
+GitHub Pages can only host the static frontend, so the backend does **not** run
+there. To keep the preview useful, the frontend includes a **Demo Mode** that
+simulates data when no backend is available.
 
-## Kom igång lokalt
+---
+
+## 🔗 Live Preview
+
+After you enable GitHub Pages, your preview will be here:
+
+```
+https://axeltb1.github.io/
+```
+
+> If your repo is not named `axeltb1.github.io`, the URL becomes
+> `https://axeltb1.github.io/<repo-name>/`.
+
+---
+
+## ✅ Quick Start (Static Frontend Only)
+
+You can open the frontend directly in your browser (Demo Mode will activate):
+
+1. Open `public/index.html` in your browser.
+2. Use the app, tools, login, and admin pages.
+
+No server is required for this demo experience.
+
+---
+
+## ✅ Quick Start (Frontend + Backend)
+
+Run the API locally for real scans:
 
 ```bash
 npm install
 npm run start
 ```
 
-Öppna sedan `http://localhost:3000` i din webbläsare.
+Open:
 
-## Viktigt om demo-inloggning
+```
+http://localhost:3000
+```
 
-`login.html` använder **endast** `localStorage` i webbläsaren för att simulera
-roller och planer. Detta är **inte** säker autentisering. För en riktig produkt
-behöver du koppla in:
+---
 
-- Backend med sessionshantering (JWT, cookies, etc.)
-- Databas för användare och abonnemang
-- Betalningsprovider (Stripe, Paddle, etc.)
+## 🚀 Deploy to GitHub Pages (Step-by-step)
 
-## Deploya till GitHub Pages (frontend)
+1. **Create a GitHub repo** and push this code.
+2. Go to **Settings → Pages → Build and deployment**.
+3. Select:
+   - Source: **Deploy from a branch**
+   - Branch: **main**
+   - Folder: **/public**
+4. Save and wait ~1–2 minutes for the build.
+5. Open your preview link.
 
-GitHub Pages kan endast serva **statisk** frontend. Så här gör du:
+---
 
-1. Skapa ett nytt repo på GitHub och pusha koden.
-2. Flytta/bygg frontend till en statisk katalog (här: `public/`).
-3. I GitHub: **Settings → Pages → Build and deployment**.
-4. Välj **Deploy from a branch** och sätt `main` + `/public`.
-5. Spara och vänta på att GitHub bygger sidan.
+## 🧪 Demo Mode (Works on GitHub Pages)
 
-> Notera: API:et i `src/server.js` körs inte på GitHub Pages.
+When the backend is unavailable, the app runs in **Demo Mode** automatically:
 
-## Deploya backend (Node/Express)
+- Domain registration works with **simulated tokens**.
+- Verification always succeeds (demo simulation).
+- Scans return **sample security results**.
+- Tools show **working demo outputs** and checklists.
+- Admin panel updates access roles using `localStorage`.
 
-För backend behöver du en separat host. Exempel (Render):
+> This is perfect for a GitHub Pages preview. For real scans, use the backend.
 
-1. Skapa ett nytt **Web Service** på Render.
-2. Koppla GitHub-repot.
-3. Build command: `npm install`
-4. Start command: `npm run start`
-5. När tjänsten är live, uppdatera frontendens `apiBase` i `public/app.js` om du
-   vill att frontend ska prata med den externa backend-URL:en.
+---
 
-## Nästa steg (för riktiga konton)
+## 🔐 Login + Admin (Demo)
 
-- Skapa endpoints för inloggning/roller.
-- Lagra verktygsåtkomst i databasen.
-- Bygg ett admin-API (istället för `localStorage`).
-- Lägg till rate limiting, logging och observability.
+Everything is client-only for the preview:
 
-## Säkerhetsnotis
+- Login uses **localStorage** (no real accounts).
+- Demo account: **tester1** / **123**.
+- Use this admin code to unlock admin tools:
 
-Alla verktyg är **passiva** och är endast avsedda för domäner du äger eller har
-skriftligt tillstånd att testa.
+```
+ADMIN-DEMO
+```
+
+- Hidden admin password (admin page corner): **test**.
+
+---
+
+## ⚠️ Backend Hosting (Required for real scanning)
+
+GitHub Pages cannot run Node/Express. To enable real scanning:
+
+1. Host the backend on a service like **Render**, **Railway**, or **Fly.io**.
+2. Update `apiBase` in `public/app.js` to your backend URL.
+
+---
+
+## 📁 Key Files
+
+- `public/index.html` – landing + app flow
+- `public/tools.html` – tool overview
+- `public/admin.html` – admin controls
+- `public/app.js` – frontend logic + demo mode
+- `src/server.js` – backend API (run locally / on a server)
+
+---
+
+## ✅ Security Notice
+
+All tools are **passive** and intended only for domains you own or have written
+permission to test.
