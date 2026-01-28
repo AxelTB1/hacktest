@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -9,7 +9,7 @@
     <title>Admin – Website Inspector</title>
     <meta
       name="description"
-      content="Adminmeny för att styra beta-verktyg och premiumåtkomst."
+      content="Admin controls for managing beta tools and plan access."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -18,9 +18,9 @@
       <header class="header">
         <div class="logo">Website<span>Inspector</span></div>
         <nav class="nav">
-          <a href="./index.html">Hem</a>
-          <a href="./tools.html">Verktyg</a>
-          <a href="./login.html" class="nav-cta">Logga in</a>
+          <a href="./index.html">Home</a>
+          <a href="./tools.html">Tools</a>
+          <a href="./login.html" class="nav-cta">Log in</a>
         </nav>
       </header>
 
@@ -29,47 +29,47 @@
           <div class="section-content">
             <div class="section-header">
               <div>
-                <h1>Adminmeny</h1>
+                <h1>Admin panel</h1>
                 <p class="muted">
-                  Här styr du beta-funktioner och prenumerationer för
-                  demo-användare. I en riktig produkt kopplas detta till backend.
+                  Manage beta features and subscriptions for demo users. In a real
+                  product, this is connected to a backend.
                 </p>
               </div>
-              <a href="./login.html" class="btn-secondary">Uppdatera inloggning</a>
+              <a href="./login.html" class="btn-secondary">Update login</a>
             </div>
 
             <div id="admin-status" class="status-banner"></div>
 
             <div class="admin-grid">
               <div class="card">
-                <h3>Beta-verktyg</h3>
+                <h3>Beta tools</h3>
                 <p class="muted">
-                  Aktivera eller stäng av beta-läget. Det styr vilka verktyg som
-                  visas som "Beta" på verktygssidan.
+                  Toggle beta mode. This controls which tools show as "Beta" on the
+                  tools page.
                 </p>
-                <button id="toggle-beta" class="btn-secondary">Växla beta-läge</button>
+                <button id="toggle-beta" class="btn-secondary">Toggle beta</button>
               </div>
 
               <div class="card">
-                <h3>Prenumerationsnivå</h3>
+                <h3>Subscription level</h3>
                 <p class="muted">
-                  Sätt plan för den inloggade användaren för att låsa upp
-                  premiumverktyg (19,99 USD / månad).
+                  Set the plan for the logged-in user to unlock premium tools
+                  ($19.99 / month).
                 </p>
                 <div class="button-row">
-                  <button data-plan="free" class="btn-secondary">Sätt Free</button>
-                  <button data-plan="pro" class="btn-primary">Sätt Pro</button>
+                  <button data-plan="free" class="btn-secondary">Set Free</button>
+                  <button data-plan="pro" class="btn-primary">Set Pro</button>
                 </div>
               </div>
 
               <div class="card">
-                <h3>Snabbåtgärder</h3>
+                <h3>Quick actions</h3>
                 <p class="muted">
-                  Rensa demo-session eller skapa en admin-session direkt.
+                  Clear the demo session or create an admin session instantly.
                 </p>
                 <div class="button-row">
-                  <button id="create-admin" class="btn-secondary">Skapa admin-demo</button>
-                  <button id="logout" class="btn-secondary">Logga ut</button>
+                  <button id="create-admin" class="btn-secondary">Create admin demo</button>
+                  <button id="logout" class="btn-secondary">Log out</button>
                 </div>
               </div>
             </div>
@@ -80,8 +80,8 @@
       <footer class="footer">
         <div class="footer-inner">
           <span>Website Inspector</span>
-          <span>Admin är endast demo lokalt i webbläsaren.</span>
-          <span>Se README för riktiga adminflöden.</span>
+          <span>Admin is demo-only in the browser.</span>
+          <span>See README for real admin workflows.</span>
         </div>
       </footer>
     </div>

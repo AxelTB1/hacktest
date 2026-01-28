@@ -29,7 +29,7 @@ function updateAdminState() {
   const user = getUserSession();
   if (!user || !user.isAdmin) {
     setStatus(
-      "Ingen admin-session hittades. Logga in med admin-kod eller skapa en admin-demo.",
+      "No admin session found. Log in with the admin code or create an admin demo.",
       "warn"
     );
     toggleBetaBtn.disabled = true;
@@ -41,9 +41,9 @@ function updateAdminState() {
   planButtons.forEach((btn) => (btn.disabled = false));
 
   const planLabel = user.plan === "pro" ? "Pro" : "Free";
-  const betaLabel = user.betaAccess ? "På" : "Av";
+  const betaLabel = user.betaAccess ? "On" : "Off";
   setStatus(
-    `Admin aktiv: ${user.email} • Plan: ${planLabel} • Beta: ${betaLabel}`,
+    `Admin active: ${user.email} • Plan: ${planLabel} • Beta: ${betaLabel}`,
     "ok"
   );
 }

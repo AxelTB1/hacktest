@@ -92,7 +92,7 @@ app.post("/api/domains", (req, res) => {
   const { host } = req.body || {};
   const normalized = normalizeHost(host);
   if (!normalized) {
-    return res.status(400).json({ error: "Ogiltigt domännamn." });
+    return res.status(400).json({ error: "Invalid domain name." });
   }
 
   const id = String(idCounter++);
@@ -126,7 +126,7 @@ app.post("/api/domains", (req, res) => {
 app.get("/api/domains/:id", (req, res) => {
   const domain = domains.get(req.params.id);
   if (!domain) {
-    return res.status(404).json({ error: "Domän hittades inte." });
+    return res.status(404).json({ error: "Domain not found." });
   }
   res.json({ domain });
 });
@@ -135,7 +135,7 @@ app.get("/api/domains/:id", (req, res) => {
 app.post("/api/domains/:id/verify", async (req, res) => {
   const domain = domains.get(req.params.id);
   if (!domain) {
-    return res.status(404).json({ error: "Domän hittades inte." });
+    return res.status(404).json({ error: "Domain not found." });
   }
 
   const { methods } = req.body || {};
@@ -182,7 +182,7 @@ app.post("/api/domains/:id/verify", async (req, res) => {
     }
   } catch (err) {
     return res.status(500).json({
-      error: "Kunde inte verifiera domänen (nätverksfel).",
+      error: "Unable to verify domain (network error).",
       details: err.message,
       checks,
     });
@@ -197,8 +197,8 @@ app.post("/api/domains/:id/verify", async (req, res) => {
     checks,
     verified,
     message: verified
-      ? "Domänen är verifierad – du kontrollerar den här domänen."
-      : "Ingen verifieringsmetod lyckades. Kontrollera att du följt instruktionerna.",
+      ? "Domain verified — you control this domain."
+      : "No verification method succeeded. Double-check the instructions.",
   });
 });
 
@@ -214,9 +214,9 @@ function analyzeSecurity(host, fetchResult, bodyText) {
 
   const hasHttps = usedHttps;
   if (!hasHttps) {
-    issues.push("Webbplatsen svarar inte primärt över HTTPS.");
+    issues.push("The website does not primarily respond over HTTPS.");
     recommendations.push(
-      "Aktivera HTTPS och omdirigera all trafik från HTTP till HTTPS med HSTS."
+      "Enable HTTPS and redirect all traffic from HTTP to HTTPS using HSTS."
     );
   }
 
@@ -228,40 +228,42 @@ function analyzeSecurity(host, fetchResult, bodyText) {
   const permissionsPolicy = headers["permissions-policy"] || headers["feature-policy"];
 
   if (!hsts) {
-    recommendations.push("Lägg till Strict-Transport-Security (HSTS) header.");
+    recommendations.push("Add the Strict-Transport-Security (HSTS) header.");
   }
   if (!csp) {
     recommendations.push(
-      "Lägg till en Content-Security-Policy (CSP) för att minska XSS-risker."
+      "Add a Content-Security-Policy (CSP) to reduce XSS risk."
     );
   }
   if (!xfo) {
     recommendations.push(
-      "Lägg till X-Frame-Options för att skydda mot clickjacking."
+      "Add X-Frame-Options to protect against clickjacking."
     );
   }
   if (!xcto) {
     recommendations.push(
-      "Lägg till X-Content-Type-Options: nosniff för att förhindra MIME-sniffing."
+      "Add X-Content-Type-Options: nosniff to prevent MIME sniffing."
     );
   }
   if (!referrerPolicy) {
-    recommendations.push("Lägg till en Referrer-Policy header.");
+    recommendations.push("Add a Referrer-Policy header.");
   }
   if (!permissionsPolicy) {
-    recommendations.push("Lägg till Permissions-Policy för att begränsa API:er i webbläsaren.");
+    recommendations.push(
+      "Add Permissions-Policy to limit sensitive browser APIs."
+    );
   }
 
   const server = headers["server"];
   const poweredBy = headers["x-powered-by"];
 
   if (server) {
-    issues.push("Server-header läcker teknisk information.");
-    recommendations.push("Ta bort eller minimera innehållet i Server-headern.");
+    issues.push("Server header leaks technical information.");
+    recommendations.push("Remove or minimize the Server header contents.");
   }
   if (poweredBy) {
-    issues.push("X-Powered-By läcker teknisk information.");
-    recommendations.push("Ta bort X-Powered-By headern.");
+    issues.push("X-Powered-By leaks technical information.");
+    recommendations.push("Remove the X-Powered-By header.");
   }
 
   const techHints = [];
@@ -275,7 +277,7 @@ function analyzeSecurity(host, fetchResult, bodyText) {
     techHints.push("Drupal");
   }
   if (/<meta name=\"generator\"/i.test(bodyText)) {
-    techHints.push("Generator-metatag hittad (ramverk/CMS kan exponeras).");
+    techHints.push("Generator meta tag found (framework/CMS may be exposed).");
   }
 
   return {
@@ -302,12 +304,12 @@ function analyzeSecurity(host, fetchResult, bodyText) {
 app.post("/api/domains/:id/scan", async (req, res) => {
   const domain = domains.get(req.params.id);
   if (!domain) {
-    return res.status(404).json({ error: "Domän hittades inte." });
+    return res.status(404).json({ error: "Domain not found." });
   }
   if (!domain.verified) {
     return res.status(403).json({
-      error: "Domänen är inte verifierad.",
-      message: "Du måste verifiera att du kontrollerar domänen innan du kan scanna den.",
+      error: "Domain not verified.",
+      message: "Verify that you control the domain before running a scan.",
     });
   }
 
@@ -329,7 +331,7 @@ app.post("/api/domains/:id/scan", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({
-      error: "Kunde inte scanna domänen (nätverksfel).",
+      error: "Unable to scan domain (network error).",
       details: err.message,
     });
   }
@@ -341,5 +343,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Website Inspector server kör på http://localhost:${PORT}`);
+  console.log(`Website Inspector server running at http://localhost:${PORT}`);
 });

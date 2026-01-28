@@ -1,42 +1,46 @@
-# Website Inspector (GitHub Pages preview)
+# Website Inspector (GitHub Pages Preview)
 
-Det här repot innehåller en statisk frontend och en enkel Node/Express-backend.
-GitHub Pages kan **endast** köra den statiska frontenden – backend körs inte där.
+This repo ships a **static frontend** and a small **Node/Express backend**.
+GitHub Pages can only host the static frontend, so the backend does **not** run
+there. To keep the preview useful, the frontend includes a **Demo Mode** that
+simulates data when no backend is available.
 
-## 🔗 Live preview
+---
 
-När du har aktiverat GitHub Pages får du din preview här:
+## 🔗 Live Preview
+
+After you enable GitHub Pages, your preview will be here:
 
 ```
 https://axeltb1.github.io/
 ```
 
-> Om du använder ett annat repo än ditt användarnamn (`axeltb1.github.io`) kommer
-> länken istället vara `https://axeltb1.github.io/<reponamn>/`.
+> If your repo is not named `axeltb1.github.io`, the URL becomes
+> `https://axeltb1.github.io/<repo-name>/`.
 
 ---
 
-## ✅ Snabbstart lokalt (frontend)
+## ✅ Quick Start (Static Frontend Only)
 
-Du kan öppna frontenden direkt i webbläsaren:
+You can open the frontend directly in your browser (Demo Mode will activate):
 
-1. Öppna `public/index.html` i webbläsaren.
-2. Navigera mellan sidorna via länkarna i UI:t.
+1. Open `public/index.html` in your browser.
+2. Use the app, tools, login, and admin pages.
 
-> Detta läser allt lokalt i webbläsaren och kräver ingen server.
+No server is required for this demo experience.
 
 ---
 
-## ✅ Snabbstart lokalt (backend + frontend)
+## ✅ Quick Start (Frontend + Backend)
 
-Vill du köra API:t lokalt (för demo-funktioner):
+Run the API locally for real scans:
 
 ```bash
 npm install
 npm run start
 ```
 
-Öppna sedan:
+Open:
 
 ```
 http://localhost:3000
@@ -44,47 +48,66 @@ http://localhost:3000
 
 ---
 
-## 🚀 Deploy till GitHub Pages (steg-för-steg)
+## 🚀 Deploy to GitHub Pages (Step-by-step)
 
-1. **Skapa repo på GitHub**
-   - Skapa ett repo och pusha upp den här koden.
-
-2. **Gå till Pages-inställningar**
-   - `Settings → Pages → Build and deployment`
-
-3. **Välj branch och katalog**
+1. **Create a GitHub repo** and push this code.
+2. Go to **Settings → Pages → Build and deployment**.
+3. Select:
    - Source: **Deploy from a branch**
    - Branch: **main**
    - Folder: **/public**
-
-4. **Spara**
-   - Vänta 1–2 minuter tills GitHub har byggt sidan.
-
-5. **Öppna preview-länken**
-   - `https://axeltb1.github.io/` (om du använder repo med samma namn)
+4. Save and wait ~1–2 minutes for the build.
+5. Open your preview link.
 
 ---
 
-## ⚠️ Viktigt: backend körs inte på GitHub Pages
+## 🧪 Demo Mode (Works on GitHub Pages)
 
-GitHub Pages stödjer bara statisk frontend. Om du vill ha API:t live:
+When the backend is unavailable, the app runs in **Demo Mode** automatically:
 
-- Host backend separat (t.ex. Render, Railway, Fly.io)
-- Uppdatera `apiBase` i `public/app.js` till din backend-URL
+- Domain registration works with **simulated tokens**.
+- Verification always succeeds (demo simulation).
+- Scans return **sample security results**.
+- Tools show **working demo outputs** and checklists.
+- Admin panel updates access roles using `localStorage`.
 
----
-
-## 📁 Viktiga filer
-
-- `public/index.html` – startsida
-- `public/tools.html` – verktyg
-- `public/admin.html` – admin
-- `public/app.js` – logik för frontend
-- `src/server.js` – backend/API (körs lokalt eller på separat host)
+> This is perfect for a GitHub Pages preview. For real scans, use the backend.
 
 ---
 
-## ✅ Säkerhetsnotis
+## 🔐 Login + Admin (Demo)
 
-Alla verktyg är **passiva** och är endast avsedda för domäner du äger eller har
-skriftligt tillstånd att testa.
+Everything is client-only for the preview:
+
+- Login uses **localStorage** (no real accounts).
+- Use this admin code to unlock admin tools:
+
+```
+ADMIN-DEMO
+```
+
+---
+
+## ⚠️ Backend Hosting (Required for real scanning)
+
+GitHub Pages cannot run Node/Express. To enable real scanning:
+
+1. Host the backend on a service like **Render**, **Railway**, or **Fly.io**.
+2. Update `apiBase` in `public/app.js` to your backend URL.
+
+---
+
+## 📁 Key Files
+
+- `public/index.html` – landing + app flow
+- `public/tools.html` – tool overview
+- `public/admin.html` – admin controls
+- `public/app.js` – frontend logic + demo mode
+- `src/server.js` – backend API (run locally / on a server)
+
+---
+
+## ✅ Security Notice
+
+All tools are **passive** and intended only for domains you own or have written
+permission to test.

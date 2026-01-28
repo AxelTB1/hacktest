@@ -29,12 +29,12 @@ loginForm.addEventListener("submit", (event) => {
   const adminCode = loginForm["admin-code"].value.trim();
 
   if (!email || !email.includes("@")) {
-    setStatus("error", "Ange en giltig e-postadress.");
+    setStatus("error", "Please enter a valid email address.");
     return;
   }
 
   if (password.length < 4) {
-    setStatus("error", "Ange ett lösenord med minst 4 tecken.");
+    setStatus("error", "Please enter a password with at least 4 characters.");
     return;
   }
 
@@ -44,9 +44,9 @@ loginForm.addEventListener("submit", (event) => {
   saveUserSession({ email, plan, isAdmin, betaAccess });
 
   if (isAdmin) {
-    setStatus("ok", "Adminläge aktiverat. Skickar dig till verktygen...");
+    setStatus("ok", "Admin mode enabled. Redirecting to tools...");
   } else {
-    setStatus("ok", "Inloggad. Skickar dig till verktygen...");
+    setStatus("ok", "Logged in. Redirecting to tools...");
   }
 
   setTimeout(() => {
